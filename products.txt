@@ -1,2 +1,1 @@
-"{\"name\": \"Bratara\", \"price\": \" 400\", \"description\": \" o bratara de aur\", \"color\": \" rosu\", \"material\": \" aur\", \"length\": \" 24\"}"
-"{\"name\": \"Cercei\", \"price\": \" 300\", \"description\": \" cercei galbeni de vara\", \"material\": \" galbeni\", \"length\": \" silver\", \"weight\": \" 230\"}"
+"{\"name\": \"Earings\", \"price\": \" 234\", \"description\": \" feiohr\", \"material\": \" brown\", \"length\": \" gold\", \"weight\": \" 1234\", \"type\": \"Earings\"}"

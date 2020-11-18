@@ -29,11 +29,21 @@ class Decoder(JSONDecoder):
         # Here we first need to check what kind of object we have
         prd = None
 
-        if( vals[0] == 'Necklace'):
+        print("Trying to decode a product, might fail...")
+
+        if( vals[-1] == 'Necklace'):
+            print('Decoded a necklace')
+            vals.pop() # pop out the object type, we do not need it as it is assigned by default in the constr
             prd = Necklace(*vals)
-        elif (vals[0] == 'Bracelet'):
+
+        elif (vals[-1] == 'Bracelet'):
+            print('Decoded a bracelet')
+            vals.pop() # pop out the object type, we do not need it as it is assigned by default in the constr
             prd = Bracelet(*vals)
-        elif ( vals[0] == 'Earings'):
+
+        elif ( vals[-1] == 'Earings'):
+            print('Decoded some earings')
+            vals.pop() # pop out the object type, we do not need it as it is assigned by default in the constr
             prd = Earings(*vals)
         return prd
 
@@ -58,6 +68,10 @@ class Necklace(Product):
         self.color = color
         self.material = material
         self.length = length
+        self.type = 'Necklace' # this will help with object deconding from JSON
+
+    def __str__(self):
+        return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, color {self.color}, length {self.length} cm"
     
     
 class Bracelet(Product):
@@ -66,6 +80,10 @@ class Bracelet(Product):
         self.color = color
         self.material = material
         self.weight = weight
+        self.type = 'Bracelet' # this will help with object deconding from JSON
+
+    def __str__(self):
+        return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, color {self.color}, weight {self.weight} grams"
 
 class Earings(Product):
     def __init__(self, name, price, description, material, length, weight):
@@ -73,6 +91,10 @@ class Earings(Product):
         self.material = material
         self.length = length
         self.weight = weight
+        self.type = 'Earings' # this will help with object deconding from JSON
+
+    def __str__(self):
+        return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, length {self.length}, weight {self.weight} grams"
 
 
 #Use the Person class to create an object, and then execute the printname method:

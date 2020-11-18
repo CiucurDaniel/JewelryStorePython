@@ -29,7 +29,7 @@ def display_product_menu():
         newProduct = Necklace(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
         Products.add_product(newProduct)
         print( str(newProduct) + ' added successfully')
-        input("\nPress enter key in order to continue\n")
+        input("\nPress enter key to continue\n")
 
     elif ( option == 2 ):
         # Earing
@@ -39,7 +39,7 @@ def display_product_menu():
         newProduct = Earings(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
         Products.add_product(newProduct)
         print( str(newProduct) + ' added successfully')
-        input("\nPress enter key in order to continue\n")
+        input("\nPress enter key to continue\n")
 
     elif (option == 3):
         # Bracelet
@@ -49,7 +49,7 @@ def display_product_menu():
         newProduct = Bracelet(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
         Products.add_product(newProduct)
         print( str(newProduct) + ' added successfully')
-        input("\nPress enter key in order to continue\n")
+        input("\nPress enter key to continue\n")
 
     else:
         pass
@@ -90,7 +90,7 @@ def remove_category():
     Categories.remove_category(categoryToRemove)
 
     print("The category was removed.")
-    input("\nPress enter key in order to continue\n")
+    input("\nPress enter key to continue\n")
 
 
 def display_categories():
@@ -103,7 +103,7 @@ def display_categories():
     for category in categoriesList:
         print(category)
 
-    input("\nPress enter key in order to continue\n")
+    input("\nPress enter key to continue\n")
 
 
 def add_product():
@@ -113,7 +113,7 @@ def add_product():
 def remove_product():
     print('remove_product')
 
-#TODO: Fix error: when retrieving products "None" is always displayed
+
 def display_products():
     print('The products available in the jewlery shop are: \n')
 
@@ -124,7 +124,9 @@ def display_products():
 
     for product in productsList:
         print('product found')
-        print(product)
+        print( str(product) )
+
+    input("\nPress enter key in order to continue\n")
 
 #TODO: Implement
 def place_order():
