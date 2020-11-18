@@ -65,7 +65,7 @@ class Products:
     def add_product(cls, prd):
         """ Adds a new category in the categories collection. We need to save the
             new category on the disk too, so we have to call teh Encoder class to
-            transform teh Python object in a JSON representation
+            transform the Python object in a JSON representation
         """
         cls.load_products()
         if prd not in cls.products:

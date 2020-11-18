@@ -1,3 +1,4 @@
 "{\"name\": \"rings\"}"
 "{\"name\": \"bracelet\"}"
 "{\"name\": \"watches\"}"
+"{\"name\": \"& C:/Python38/python.exe \\\"d:/Programe de la scoala programare/3_1_AdvancedProgramming/Project/JewleryStore/Store.py\\\"\"}"

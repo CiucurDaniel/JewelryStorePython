@@ -1,5 +1,5 @@
 from Products import Products
-from Product import Earings, Necklace
+from Product import Bracelet, Earings, Necklace
 from Category import Category
 from Categories import Categories
 from json import JSONDecodeError
@@ -19,12 +19,13 @@ def display_product_menu():
     print("2. Earing")
     print("3. Bracelet")
 
+    #TODO: Error handling
     option = int(input())
 
     if ( option == 1):
         # Necklace
-        attributes = input('Please provide: name, price, description, color, material, length')
-        attributes_list = attributes.split()
+        attributes = input('Please provide: name, price, description, color, material, length separated by comma')
+        attributes_list = attributes.split(',')
         print(attributes_list)
         newProduct = Necklace(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
         Products.add_product(newProduct)
@@ -32,16 +33,21 @@ def display_product_menu():
 
     elif ( option == 2 ):
         # Earing
-        attributes = input('Please provide: name, price, description, color, material, weight')
-        attributes_list = attributes.split()
+        attributes = input('Please provide: name, price, description, color, material, weight separated by comma')
+        attributes_list = attributes.split(',')
         print(attributes_list)
-        Earings()
+        newProduct = Earings(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
+        Products.add_product(newProduct)
+        print( str(newProduct) + ' added successfully')
 
     elif (option == 3):
         # Bracelet
-        attributes = input('Please privide: name, price, description, material, length, weight')
-        attributes_list = attributes.split()
+        attributes = input('Please privide: name, price, description, material, length, weight separated by comma')
+        attributes_list = attributes.split(',')
         print(attributes_list)
+        newProduct = Bracelet(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
+        Products.add_product(newProduct)
+        print( str(newProduct) + ' added successfully')
 
     else:
         pass
@@ -94,17 +100,27 @@ def display_categories():
 
 
 def add_product():
+    # If the user wants to add a product first 
+    # see which type he wants to add, display_product_menu()
     display_product_menu()
 
 def remove_product():
     print('remove_product')
 
 def display_products():
-    print('display_produts')
+    print('The products available in the jewlery shop are: ')
 
+    productsList = []
+    Products.load_products()
+
+    for category in Categories.categories:
+        print(category)
+
+#TODO: Implement
 def place_order():
     print('place_order')
 
+#TODO: Implement
 def display_orders():
     print('display_orders')
 
@@ -133,12 +149,17 @@ if __name__ == "__main__":
         
         displayMainMenu()
         # Get user's choice
-        option = int(input('Enter your option:'))
-        # TODO: Provide error handling for non int characters
+        option = input('Enter your option:')
+
+        if(option.isnumeric() == False):
+            print("Wrong input!")
+            break
+
+        num_option = int(option) # convert the user input to int
 
         # Based on choice go on the function that he requested
-        if (option != 9):
-            menuPicker(option)
+        if (num_option != 9):
+            menuPicker(num_option)
         else:
             print('Have a nice day, bye!')
             break
