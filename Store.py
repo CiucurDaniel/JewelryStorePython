@@ -1,17 +1,16 @@
+from Orders import Orders
 from Products import Products
 from Product import Bracelet, Earings, Necklace
 from Category import Category
 from Categories import Categories
 from json import JSONDecodeError
 
-# define some functions to be used in the main menu. You can follow the
-# suggestion described in the lab requirement, by simulating a switch
-# instruction using a dictionary, or just using multiple 'if' branches
-# which is, obviously, much uglier
 
 from Categories import Categories
 from Category import *
 import Product
+
+# Function used to display a sub - menu for the Add Product option, in the console
 
 def display_product_menu():
     print("What kind product you want?")
@@ -24,30 +23,33 @@ def display_product_menu():
 
     if ( option == 1):
         # Necklace
-        attributes = input('Please provide: name, price, description, color, material, length separated by comma')
+        attributes = input('Please provide: name, price, description, color, material, length separated by comma\n')
         attributes_list = attributes.split(',')
         print(attributes_list)
         newProduct = Necklace(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
         Products.add_product(newProduct)
         print( str(newProduct) + ' added successfully')
+        input("\nPress enter key in order to continue\n")
 
     elif ( option == 2 ):
         # Earing
-        attributes = input('Please provide: name, price, description, color, material, weight separated by comma')
+        attributes = input('Please provide: name, price, description, color, material, weight separated by comma\n')
         attributes_list = attributes.split(',')
         print(attributes_list)
         newProduct = Earings(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
         Products.add_product(newProduct)
         print( str(newProduct) + ' added successfully')
+        input("\nPress enter key in order to continue\n")
 
     elif (option == 3):
         # Bracelet
-        attributes = input('Please privide: name, price, description, material, length, weight separated by comma')
+        attributes = input('Please privide: name, price, description, material, length, weight separated by comma\n')
         attributes_list = attributes.split(',')
         print(attributes_list)
         newProduct = Bracelet(attributes_list[0], attributes_list[1], attributes_list[2], attributes_list[3], attributes_list[4], attributes_list[5])
         Products.add_product(newProduct)
         print( str(newProduct) + ' added successfully')
+        input("\nPress enter key in order to continue\n")
 
     else:
         pass
@@ -72,60 +74,73 @@ def displayMainMenu():
 
 def add_category():
     # read the input and create a new python object
-    newCategory = Category(input('What category you want to add?'))
+    newCategory = Category(input('What category you want to add?\n'))
 
     # load the new category in the txt database
     Categories.add_category(newCategory)
 
     print( str(newCategory) + ' added successfully')
+    input("\nPress enter key in order to continue\n")
 
 def remove_category():
     # read the input and create a new python object
-    categoryToRemove = Category(input('What category you want to remove?'))
+    categoryToRemove = Category(input('What category you want to remove?\n'))
 
-    # load the new category in the txt database
+    # remove the category
     Categories.remove_category(categoryToRemove)
 
     print("The category was removed.")
+    input("\nPress enter key in order to continue\n")
 
 
 def display_categories():
-    print('The categories available in the jewlery shop are: ')
+    print('The categories available in the jewlery shop are: \n')
 
-    categoriesList = []
-    Categories.load_categories()
+    # Get a list with the categories
+    categoriesList = Categories.load_categories()
 
-    for category in Categories.categories:
+    # Display the categories retrieved in the list
+    for category in categoriesList:
         print(category)
+
+    input("\nPress enter key in order to continue\n")
 
 
 def add_product():
-    # If the user wants to add a product first 
-    # see which type he wants to add, display_product_menu()
+    # If the user wants to add a product first see which type he wants to add, display_product_menu()
     display_product_menu()
 
 def remove_product():
     print('remove_product')
 
+#TODO: Fix error: when retrieving products "None" is always displayed
 def display_products():
-    print('The products available in the jewlery shop are: ')
+    print('The products available in the jewlery shop are: \n')
 
-    productsList = []
-    Products.load_products()
+    # Index variable is used for deletion purposes
+    index = 1
+    productsList = Products.load_products()
+    print("loaded the list with products")
 
-    for category in Categories.categories:
-        print(category)
+    for product in productsList:
+        print('product found')
+        print(product)
 
 #TODO: Implement
 def place_order():
     print('place_order')
 
-#TODO: Implement
 def display_orders():
-    print('display_orders')
+    try:
+        orders = Orders.load_orders()
+        for index, placed_order in enumerate(orders, start=1):
+            print(f"{index}. {placed_order}")
+        input("\nPress enter key in order to continue\n")
+    except JSONDecodeError:
+        input("Error on retrieving the orders\n")
 
 def errorHandler():
-    print('This option does not exist')
+    print('This option does not exist\n')
 
 
 def menuPicker(option):
@@ -161,5 +176,5 @@ if __name__ == "__main__":
         if (num_option != 9):
             menuPicker(num_option)
         else:
-            print('Have a nice day, bye!')
+            print('Have a nice day, bye!\n')
             break

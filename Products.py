@@ -41,6 +41,7 @@ class Products:
                     if decoded_product not in cls.products:
                         cls.products.append(decoded_product)
         except (JSONDecodeError, FileNotFoundError) as e:
+            print("Error at Products JSon Decoder")
             cls.products = []
         return cls.products
 
@@ -48,14 +49,14 @@ class Products:
     def remove_product(cls, prd):
         """ Removes a product from the products collection. We pass the category
             to be removed as a parameter to teh function and then, as a first step
-            we remove it from the class variable 'categories'. Then, in a second step
+            we remove it from the class variable 'products'. Then, in a second step
             we iterate that collection and we serialize element by element
         """
         cls.load_products()
         if prd in cls.products:
-            cls.categories.remove(prd)
-            with open("categories.txt", 'w') as f:
-                for prd in cls.categories:
+            cls.products.remove(prd)
+            with open("products.txt", 'w') as f:
+                for prd in cls.products:
                     e = Encoder()
                     encoded_prd = e.encode(prd)
                     dump(encoded_prd, f)

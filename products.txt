@@ -1,1 +1,2 @@
-"{\"name\": \"lantsor\", \"price\": \"100\", \"description\": \"elegant\", \"color\": \"silver\", \"material\": \"gold\", \"length\": \"123\"}"
+"{\"name\": \"Bratara\", \"price\": \" 400\", \"description\": \" o bratara de aur\", \"color\": \" rosu\", \"material\": \" aur\", \"length\": \" 24\"}"
+"{\"name\": \"Cercei\", \"price\": \" 300\", \"description\": \" cercei galbeni de vara\", \"material\": \" galbeni\", \"length\": \" silver\", \"weight\": \" 230\"}"
