@@ -47,8 +47,8 @@ class Products:
 
     @classmethod
     def remove_product(cls, prd):
-        """ Removes a product from the products collection. We pass the category
-            to be removed as a parameter to teh function and then, as a first step
+        """ Removes a product from the products collection. We pass the product
+            to be removed as a parameter to the function and then, as a first step
             we remove it from the class variable 'products'. Then, in a second step
             we iterate that collection and we serialize element by element
         """

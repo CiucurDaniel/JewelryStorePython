@@ -10,6 +10,7 @@ from Categories import Categories
 from Category import *
 import Product
 
+
 # Function used to display a sub - menu for the Add Product option, in the console
 
 def display_product_menu():
@@ -54,6 +55,8 @@ def display_product_menu():
     else:
         pass
 
+#TODO: Create a new function where the above code will be moved
+# currently the above function has to many roles which violates a Clean Arhitecture code
 
 # Function used to display the jewlery menu in the console
 
@@ -111,7 +114,28 @@ def add_product():
     display_product_menu()
 
 def remove_product():
-    print('remove_product')
+    print('In order to remove product you must first display all the products and select the index of the product to delete')
+    print("TIP: if you do not know the index of the product you want to delete simply go back and return here aftwards.\n")
+    
+    # get the index of the product which the use whishes to delete
+    productIndex = int(input("Enter the index of the product you wish to delete: "))
+
+    # perform the delete
+    try:
+            products = Products.load_products()
+            # like this because when we list the products we start from 1 because is more friendly to the user
+            if 0 < productIndex <= products.__len__():
+                productToDelete = products[productIndex - 1]
+                Products.remove_product(productToDelete) 
+                input("Product: " + str(productToDelete) + " has been removed removed \n Press enter key in order to continue\n")
+                
+            else:
+                product_option = int(input(
+                    "This product does not exist in the list. Input 1 to try again or any other number to return to the store menu:\n"))
+                if product_option == 1:
+                    remove_product()
+    except JSONDecodeError:
+        input("Error happened while retrieving the products. Press enter key in order to continue\n")
 
 
 def display_products():
@@ -123,8 +147,8 @@ def display_products():
     print("loaded the list with products")
 
     for product in productsList:
-        print('product found')
-        print( str(product) )
+        print( str(index) + " --> " + str(product) )
+        index += 1
 
     input("\nPress enter key in order to continue\n")
 
@@ -145,6 +169,7 @@ def errorHandler():
     print('This option does not exist\n')
 
 
+# Simulation a switch using dictionary for user choice in the menu
 def menuPicker(option):
     menu = {
         1: add_category,
@@ -166,7 +191,7 @@ if __name__ == "__main__":
         
         displayMainMenu()
         # Get user's choice
-        option = input('Enter your option:')
+        option = input('Enter your option: ')
 
         if(option.isnumeric() == False):
             print("Wrong input!")
@@ -180,3 +205,4 @@ if __name__ == "__main__":
         else:
             print('Have a nice day, bye!\n')
             break
+

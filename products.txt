@@ -1,1 +1,0 @@
-"{\"name\": \"Earings\", \"price\": \" 234\", \"description\": \" feiohr\", \"material\": \" brown\", \"length\": \" gold\", \"weight\": \" 1234\", \"type\": \"Earings\"}"

@@ -1,3 +1,2 @@
-"{\"name\": \"rings\"}"
 "{\"name\": \"bracelet\"}"
 "{\"name\": \"watches\"}"

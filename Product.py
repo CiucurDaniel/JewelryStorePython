@@ -29,20 +29,20 @@ class Decoder(JSONDecoder):
         # Here we first need to check what kind of object we have
         prd = None
 
-        print("Trying to decode a product, might fail...")
+        #print("Trying to decode a product, might fail...")
 
         if( vals[-1] == 'Necklace'):
-            print('Decoded a necklace')
+            #print('Decoded a necklace')
             vals.pop() # pop out the object type, we do not need it as it is assigned by default in the constr
             prd = Necklace(*vals)
 
         elif (vals[-1] == 'Bracelet'):
-            print('Decoded a bracelet')
+            #print('Decoded a bracelet')
             vals.pop() # pop out the object type, we do not need it as it is assigned by default in the constr
             prd = Bracelet(*vals)
 
         elif ( vals[-1] == 'Earings'):
-            print('Decoded some earings')
+            #print('Decoded some earings')
             vals.pop() # pop out the object type, we do not need it as it is assigned by default in the constr
             prd = Earings(*vals)
         return prd
