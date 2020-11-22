@@ -41,7 +41,7 @@ class Products:
                     if decoded_product not in cls.products:
                         cls.products.append(decoded_product)
         except (JSONDecodeError, FileNotFoundError) as e:
-            print("Error at Products JSon Decoder")
+            print("Error at Products JSon Decoder or the file with products is not yet created")
             cls.products = []
         return cls.products
 

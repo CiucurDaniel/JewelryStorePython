@@ -1,0 +1,1 @@
+"{\"product\": {\"name\": \"neck\", \"price\": \" 465\", \"description\": \" des\", \"color\": \" color\", \"material\": \" material\", \"length\": \" 234\", \"type\": \"Necklace\"}, \"date\": \"23/11/2020\", \"quantity\": 10, \"address\": \"Timisoara\"}"

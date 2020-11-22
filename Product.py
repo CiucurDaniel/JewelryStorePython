@@ -25,11 +25,8 @@ class Decoder(JSONDecoder):
         for key in data.keys():
             vals.append(data[key])
 
-        #prd = Category(*vals)
         # Here we first need to check what kind of object we have
         prd = None
-
-        #print("Trying to decode a product, might fail...")
 
         if( vals[-1] == 'Necklace'):
             #print('Decoded a necklace')
@@ -61,6 +58,9 @@ class Product(metaclass=ABCMeta):
         #self.category = category
         #self.isOrdered = False # a new added products is surely not ordered yet
 
+    def __eq__(self, other):
+        return self.name == other.name and self.price == other.price and self.description == self.description
+
 
 class Necklace(Product):
     def __init__(self, name, price, description, color, material, length ):
@@ -70,8 +70,14 @@ class Necklace(Product):
         self.length = length
         self.type = 'Necklace' # this will help with object deconding from JSON
 
+    def __eq__(self, other):
+        return super().__eq__(other) and self.__class__ == other.__class__ and self.color == other.color and self.material == other.material and self.length == other.length
+
     def __str__(self):
         return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, color {self.color}, length {self.length} cm"
+
+    def printOrderInfo(self):
+        return f"Necklace {self.name}, material: {self.material}, price: {self.price} "
     
     
 class Bracelet(Product):
@@ -81,6 +87,9 @@ class Bracelet(Product):
         self.material = material
         self.weight = weight
         self.type = 'Bracelet' # this will help with object deconding from JSON
+
+    def __eq__(self, other):
+        return super().__eq__(other) and self.__class__ == other.__class__ and self.color == other.color and self.material == other.material and self.weight == other.weight
 
     def __str__(self):
         return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, color {self.color}, weight {self.weight} grams"
@@ -92,6 +101,9 @@ class Earings(Product):
         self.length = length
         self.weight = weight
         self.type = 'Earings' # this will help with object deconding from JSON
+
+    def __eq__(self, other):
+        return super().__eq__(other) and self.__class__ == other.__class__ and self.material == other.material and self.length == other.length and self.weight == other.weight
 
     def __str__(self):
         return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, length {self.length}, weight {self.weight} grams"

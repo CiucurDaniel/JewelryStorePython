@@ -1,24 +1,21 @@
+from Order import Order
 from Orders import Orders
 from Products import Products
 from Product import Bracelet, Earings, Necklace
 from Category import Category
 from Categories import Categories
 from json import JSONDecodeError
-
-
 from Categories import Categories
 from Category import *
 import Product
-
+from storeStringConstants import MAIN_MENU, PLACE_ORDER_TEXT, PRODUCT_MENU, READ_ENTER_KEY
+from datetime import date
 
 # Function used to display a sub - menu for the Add Product option, in the console
 
 def display_product_menu():
-    print("What kind product you want?")
-    print("1. Necklace")
-    print("2. Earing")
-    print("3. Bracelet")
-
+    print(PRODUCT_MENU)
+    
     #TODO: Error handling
     option = int(input())
 
@@ -55,25 +52,10 @@ def display_product_menu():
     else:
         pass
 
-#TODO: Create a new function where the above code will be moved
-# currently the above function has to many roles which violates a Clean Arhitecture code
-
 # Function used to display the jewlery menu in the console
 
 def displayMainMenu():
-    print('|-----------------------------------------|')
-    print('| Welcome to Ciucur Daniel Jewlery Shop 1 |')
-    print('|-----------------------------------------|')
-    print('| 1. Add category                         |')
-    print('| 2. Remove category                      |')
-    print('| 3. Display categories                   |')
-    print('| 4. Add product                          |')
-    print('| 5. Remove product                       |')
-    print('| 6. Display products                     |')
-    print('| 7. Place a new order                    |')
-    print('| 8. Display orders                       |')
-    print('| 9. Close the program                    |')
-    print('|-----------------------------------------|') 
+    print(MAIN_MENU)
 
 def add_category():
     # read the input and create a new python object
@@ -93,7 +75,7 @@ def remove_category():
     Categories.remove_category(categoryToRemove)
 
     print("The category was removed.")
-    input("\nPress enter key to continue\n")
+    input(READ_ENTER_KEY)
 
 
 def display_categories():
@@ -106,7 +88,7 @@ def display_categories():
     for category in categoriesList:
         print(category)
 
-    input("\nPress enter key to continue\n")
+    input(READ_ENTER_KEY)
 
 
 def add_product():
@@ -150,18 +132,55 @@ def display_products():
         print( str(index) + " --> " + str(product) )
         index += 1
 
-    input("\nPress enter key in order to continue\n")
+    input(READ_ENTER_KEY)
 
 #TODO: Implement
 def place_order():
     print('place_order')
+    
+    userOption = int(input((PLACE_ORDER_TEXT)))
+
+    if ( userOption == 1):
+        # User already has a product index
+        print("user option 1")
+        productIndex = int(input("Enter the index of the product you want to order: "))
+        try:
+            products = Products.load_products()
+            today = date.today().strftime(f"%d/%m/%Y")
+            if 0 < productIndex <= products.__len__():
+                product_to_order = products[productIndex - 1]
+                quantity = 0
+                loop = True
+                while loop:
+                    quantity = int(input("Enter the quantity: \n"))
+                    if quantity > 0:
+                        loop = False
+                shippingAddress = input("Please write the address where this order should be delivered:\n")
+                # Order ( product , date, quantity, address)
+                clientOrder = Order(product_to_order.__dict__, today, quantity, shippingAddress)
+                Orders.add_order(clientOrder)
+                input(f"Your order has been placed! " + READ_ENTER_KEY)
+        except JSONDecodeError:
+            input("Error on retrieving the products. Try again later. " + READ_ENTER_KEY)
+    elif ( userOption == 2):
+        # User wants to first see the products list
+        display_products()
+        # After he checked out the products ask why again which one he wants for his order
+        place_order()
+    elif ( userOption == 3 ):
+        # User simply wants to go back
+        input(READ_ENTER_KEY)
 
 def display_orders():
     try:
         orders = Orders.load_orders()
+        if ( len(orders) >= 1 ):
+            print(" The current orders are: ")
+        else:
+            print("Currently there are no orders.")
         for index, placed_order in enumerate(orders, start=1):
             print(f"{index}. {placed_order}")
-        input("\nPress enter key in order to continue\n")
+        input(READ_ENTER_KEY)
     except JSONDecodeError:
         input("Error on retrieving the orders\n")
 

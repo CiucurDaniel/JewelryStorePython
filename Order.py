@@ -22,22 +22,17 @@ class Decoder(JSONDecoder):
 
 
 class Order:
-    def __init__(self, product, product_type, quantity, address):
+    def __init__(self, product, date, quantity, address):
         self.product = product
-        self.product_type = product_type
+        self.date = date
         self.quantity = quantity
         self.address = address
 
     def __eq__(self, other):
-        return self.__class__ == other.__class__ and self.product == other.product and self.product_type == other.product_type and self.quantity == other.quantity and self.address == other.address
+        return self.__class__ == other.__class__ and self.product == other.product and self.date == other.date and self.quantity == other.quantity and self.address == other.address
 
-    # a deepcopy is created so the self.product dictionary won't be affected when changing the content
-    # although creating a Product object to use its print method would have been a better solution, for the sake of the project printing the dict content should suffice
     def __str__(self):
         try:
-            product_dict = copy.deepcopy(self.product)
-            category_name = product_dict.get('category').get('name')
-            product_dict.pop('category')
-            return f"Order to {self.address}, containing {self.quantity} {'item' if self.quantity == 1 else 'items'} of {self.product_type}: {product_dict} from category {category_name}"
+            return f"Order info: shipping address: {self.address}, quantity: {self.quantity} {'item' if self.quantity == 1 else 'items'}, date: {self.date}, order contains: {self.product}" 
         except AttributeError:
             return "Error on order entry"
