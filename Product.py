@@ -75,11 +75,8 @@ class Necklace(Product):
 
     def __str__(self):
         return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, color {self.color}, length {self.length} cm"
+    
 
-    def printOrderInfo(self):
-        return f"Necklace {self.name}, material: {self.material}, price: {self.price} "
-    
-    
 class Bracelet(Product):
     def __init__(self, name, price, description, color, material, weight):
         super(Bracelet, self).__init__(name, price, description)
@@ -94,6 +91,7 @@ class Bracelet(Product):
     def __str__(self):
         return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, color {self.color}, weight {self.weight} grams"
 
+
 class Earings(Product):
     def __init__(self, name, price, description, material, length, weight):
         super(Earings, self).__init__(name, price, description)
@@ -107,14 +105,3 @@ class Earings(Product):
 
     def __str__(self):
         return f"Necklace: {self.name}, price: {self.price} RON, description: {self.description}, material {self.material}, length {self.length}, weight {self.weight} grams"
-
-
-#Use the Person class to create an object, and then execute the printname method:
-
-x = Product("Necklace", 125, "lantisor de argint 12mm circ")
-#x.printProduct()
-
-y = Earings('cercei', 1234, 'bla bla bla', 'aur', 12, 100)
-#y.printProduct()
-
-#####3

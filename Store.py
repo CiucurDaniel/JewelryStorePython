@@ -11,9 +11,11 @@ import Product
 from storeStringConstants import MAIN_MENU, PLACE_ORDER_TEXT, PRODUCT_MENU, READ_ENTER_KEY
 from datetime import date
 
-# Function used to display a sub - menu for the Add Product option, in the console
 
-def display_product_menu():
+def add_product():
+    '''Function used to add a new product in the store'''
+
+    # If the user wants to add a product first he needs to see which type he wants to add
     print(PRODUCT_MENU)
     
     #TODO: Error handling
@@ -52,12 +54,16 @@ def display_product_menu():
     else:
         pass
 
-# Function used to display the jewlery menu in the console
 
 def displayMainMenu():
+    '''Function used to display the jewlery menu in the console'''
+
     print(MAIN_MENU)
 
+
 def add_category():
+    '''Function used to display the jewlery menu in the console'''
+
     # read the input and create a new python object
     newCategory = Category(input('What category you want to add?\n'))
 
@@ -67,7 +73,10 @@ def add_category():
     print( str(newCategory) + ' added successfully')
     input("\nPress enter key in order to continue\n")
 
+
 def remove_category():
+    '''Function used to remove a category from the txt database'''
+
     # read the input and create a new python object
     categoryToRemove = Category(input('What category you want to remove?\n'))
 
@@ -90,10 +99,6 @@ def display_categories():
 
     input(READ_ENTER_KEY)
 
-
-def add_product():
-    # If the user wants to add a product first see which type he wants to add, display_product_menu()
-    display_product_menu()
 
 def remove_product():
     print('In order to remove product you must first display all the products and select the index of the product to delete')
@@ -134,9 +139,9 @@ def display_products():
 
     input(READ_ENTER_KEY)
 
-#TODO: Implement
+
 def place_order():
-    print('place_order')
+    ''' Function used to help the user enter a new order'''
     
     userOption = int(input((PLACE_ORDER_TEXT)))
 
@@ -172,6 +177,8 @@ def place_order():
         input(READ_ENTER_KEY)
 
 def display_orders():
+    ''' Function used to display the currently ongoing orders'''
+    
     try:
         orders = Orders.load_orders()
         if ( len(orders) >= 1 ):
